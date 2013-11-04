@@ -27,9 +27,11 @@ ZipTax.key = "123456789" #sets the api key
 ```
 
 ### ZipTax.request
-  
+
+The request method takes an Hash as single argument, the keys in the hash can be any of the accepted keys from ziptax docs.
+
 ```ruby
-ZipTax.request(90210) #returns the raw request, jsonified.
+ZipTax.request(:postalcode => 90210) #returns the raw request, jsonified.
 
 => { "version" => "v20",
      "rCode"   => 100,
@@ -74,24 +76,24 @@ ZipTax.request(90210) #returns the raw request, jsonified.
    }
 ```
 
-### ZipTax.rate(zip)
+### ZipTax.rate(options)
 
 ```ruby
-ZipTax.rate(90210) #returns the sales tax rate for that zip code
+ZipTax.rate(:postalcode => 90210) #returns the sales tax rate for that zip code
 => 0.087499998509884
 ```
 
 ```ruby
-ZipTax.rate(90210, 'CA') #returns the sales tax rate for an item sold in a specific state
+ZipTax.rate(:postalcode => 90210, :state => "CA") #returns the sales tax rate for an item sold in a specific state
 => 0.087499998509884
 ```
 
 ```ruby
-ZipTax.rate(90210, 'TX') #returns 0.0 if sales tax isn't neccessary in that state
+ZipTax.rate(:postalcode => 90210, :state => "TX") #returns 0.0 if sales tax isn't neccessary in that state
 => 0.0
 ```
 
-### ZipTax.info(zip)
+### ZipTax.info(:postalcode => 90210)
 
 ```ruby
 ZipTax.info(90210) #returns a hash of information about a specified zip code
